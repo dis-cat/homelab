@@ -1,0 +1,45 @@
+services:
+  gluetun:
+    image: docker.io/qmcgaw/gluetun:v3
+    container_name: gluetun
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - ./gluetun_data:/gluetun
+    environment:
+      - VPN_SERVICE_PROVIDER=airvpn
+      - VPN_TYPE=wireguard
+      - WIREGUARD_MTU=1400
+      - TZ=${TZ:?ERROR! Please provide the timezone!!!}
+      - UPDATER_PERIOD=24h
+      # - DNS_ADDRESS=127.0.0.11
+      - DNS_KEEP_NAMESERVER=on
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY:?ERROR! Please provide the wireguard private key!!!}
+      - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY:?ERROR! Please provide the wireguard preshared key!!!}
+      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?ERROR! Please provide the wireguard addresses!!!}
+      # - LOG_LEVEL=debug
+      
+  gluetun-tailscale:
+    image: docker.io/tailscale/tailscale:latest
+    container_name: gluetun-tailscale
+    restart: unless-stopped
+    network_mode: "service:gluetun"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./tailscale_data:/var/lib/tailscale:rw
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      - TS_HOSTNAME=airvpn-exit
+      - TS_AUTHKEY=${TS_AUTHKEY:?ERROR! Please provide the tailscale authkey!!!}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_ACCEPT_DNS=true
+      - TS_EXTRA_ARGS=--advertise-exit-node
+      - TS_NO_LOGS_NO_SUPPORT=true
+    depends_on:
+      gluetun:
+        condition: service_healthy

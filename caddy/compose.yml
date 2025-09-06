@@ -1,0 +1,14 @@
+services:
+  caddy:
+    image: docker.io/caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    network_mode: "host"
+    environment:
+      - LOCAL_DOMAIN=${LOCAL_DOMAIN:?ERROR! Please provide the local domain name!!!}
+      - TS_DOMAIN=${TS_DOMAIN:?ERROR! Please provide the tailscale domain name!!!}
+    volumes:
+      - ./caddy_data/Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy_data/site:/srv
+      - ./caddy_data/data:/data
+      - ./caddy_data/config:/config

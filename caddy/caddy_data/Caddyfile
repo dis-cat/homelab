@@ -1,0 +1,5 @@
+# AdGuard Home dashboard
+agh.{$LOCAL_DOMAIN}, agh.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:8080
+	tls internal
+}
