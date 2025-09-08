@@ -13,11 +13,15 @@ services:
       # # DNS-over-QUIC
       - "853:853/udp"
     volumes:
-      - ./adguard_data/work:/opt/adguardhome/work
-      - ./adguard_data/conf:/opt/adguardhome/conf
+      - adguard_data_work:/opt/adguardhome/work
+      - adguard_data_conf:/opt/adguardhome/conf
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:80/']
       interval: 60s
       timeout: 10s
       retries: 5
       start_period: 30s
+
+volumes:
+  adguard_data_work:
+  adguard_data_conf:

@@ -8,19 +8,17 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     volumes:
-      - ./gluetun_data:/gluetun
+      - gluetun_data:/gluetun
     environment:
       - VPN_SERVICE_PROVIDER=airvpn
       - VPN_TYPE=wireguard
       - WIREGUARD_MTU=1400
       - TZ=${TZ:?ERROR! Please provide the timezone!!!}
       - UPDATER_PERIOD=24h
-      # - DNS_ADDRESS=127.0.0.11
       - DNS_KEEP_NAMESERVER=on
       - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY:?ERROR! Please provide the wireguard private key!!!}
       - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY:?ERROR! Please provide the wireguard preshared key!!!}
       - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?ERROR! Please provide the wireguard addresses!!!}
-      # - LOG_LEVEL=debug
       
   gluetun-tailscale:
     image: docker.io/tailscale/tailscale:latest
@@ -31,7 +29,7 @@ services:
       - NET_ADMIN
       - NET_RAW
     volumes:
-      - ./tailscale_data:/var/lib/tailscale:rw
+      - tailscale_data:/var/lib/tailscale:rw
       - /dev/net/tun:/dev/net/tun
     environment:
       - TS_HOSTNAME=airvpn-exit
@@ -43,3 +41,7 @@ services:
     depends_on:
       gluetun:
         condition: service_healthy
+
+volumes:
+  gluetun_data:
+  tailscale_data:

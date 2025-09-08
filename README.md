@@ -15,3 +15,5 @@ Set dns in resolve.conf to 127.0.0.1 (with fallback dns as 9.9.9.9, etc.) in ord
 Add two dns rewrites to adguard home:
 - `*.domain.name` -> `<local server ip>`
 - `*.tailscale.sub.domain` -> `<tailscale server ip>`
+
+When migrating remember to backup your adguard home configuration in `adguard_data_conf:./AdGuardHome.yaml`.
