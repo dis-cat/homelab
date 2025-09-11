@@ -5,12 +5,13 @@ services:
     restart: unless-stopped
     ports:
       - 3333:3000/tcp
-      - 8080:80/tcp # 80 reserved for reverse proxy
+      # port 80 reserved for reverse proxy
+      - 8080:80/tcp 
       - 53:53/tcp
       - 53:53/udp
-      # # DNS-over-TLS
+      # DNS-over-TLS
       - "853:853/tcp"
-      # # DNS-over-QUIC
+      # DNS-over-QUIC
       - "853:853/udp"
     volumes:
       - adguard_data_work:/opt/adguardhome/work
