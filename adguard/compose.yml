@@ -13,6 +13,8 @@ services:
       - "853:853/tcp"
       # DNS-over-QUIC
       - "853:853/udp"
+    environment:
+      - TZ=${TZ:?ERROR! Please provide the timezone!!!}
     volumes:
       - adguard_data_work:/opt/adguardhome/work
       - adguard_data_conf:/opt/adguardhome/conf
