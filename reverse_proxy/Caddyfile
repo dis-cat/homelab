@@ -3,3 +3,8 @@ agh.{$LOCAL_DOMAIN}, agh.{$TS_DOMAIN}, adguard.{$LOCAL_DOMAIN}, adguard.{$TS_DOM
 	reverse_proxy host.containers.internal:8080
 	tls internal
 }
+# Syncthing WebUI
+st.{$LOCAL_DOMAIN}, st.{$TS_DOMAIN}, syncthing.{$LOCAL_DOMAIN}, syncthing.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:8384
+	tls internal
+}

@@ -32,7 +32,7 @@ services:
       - tailscale_data:/var/lib/tailscale:rw
       - /dev/net/tun:/dev/net/tun
     environment:
-      - TS_HOSTNAME=airvpn-exit
+      - TS_HOSTNAME=${TS_HOSTNAME:?ERROR! Please provide the tailscale hostname!!!}
       - TS_AUTHKEY=${TS_AUTHKEY:?ERROR! Please provide the tailscale authkey!!!}
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_ACCEPT_DNS=true

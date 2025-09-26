@@ -1,0 +1,20 @@
+services:
+  syncthing:
+    image: docker.io/syncthing/syncthing:latest
+    container_name: syncthing
+    restart: unless-stopped
+    hostname: ${HOSTNAME:?ERROR! Please provide the syncthing host name!!!}
+    volumes:
+      - syncthing_data:/var/syncthing
+    ports:
+      - 8384:8384 # Web UI
+      - 22000:22000/tcp # TCP file transfers
+      - 22000:22000/udp # QUIC file transfers
+    healthcheck:
+      test: curl -fkLsS -m 2 127.0.0.1:8384/rest/noauth/health | grep -o --color=never OK || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
+
+volumes:
+  syncthing_data:
