@@ -4,16 +4,13 @@ services:
     container_name: adguard
     restart: unless-stopped
     ports:
-      # admin portal port only for initial setup
+      # Admin Portal (only for initial setup)
       # - 3333:3000/tcp 
-      # port 80 reserved for reverse proxy
-      - 8080:80/tcp 
+      # WebUI
+      - 8080:80/tcp
+      # DNS
       - 53:53/tcp
       - 53:53/udp
-      # DNS-over-TLS
-      - "853:853/tcp"
-      # DNS-over-QUIC
-      - "853:853/udp"
     environment:
       - TZ=${TZ:?ERROR! Please provide the timezone!!!}
     volumes:
