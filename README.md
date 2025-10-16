@@ -162,3 +162,7 @@ Various self hosted services built on podman containers and served remotely thro
 	- (add server device from laptop to share previous folders)
 		- Sharing/Addresses: tcp://<server-ts-name>.<ts-fun-name>.ts.net:22000
 	- (add other devices and folders)
+
+- HOME: (start in homelab/home)
+	- podman-compose systemd -a register
+	- systemctl --user enable --now podman-compose@home

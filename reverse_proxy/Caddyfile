@@ -8,3 +8,8 @@ st.{$LOCAL_DOMAIN}, st.{$TS_DOMAIN}, syncthing.{$LOCAL_DOMAIN}, syncthing.{$TS_D
 	reverse_proxy host.containers.internal:8384
 	tls internal
 }
+# MAFL Homepage
+hm.{$LOCAL_DOMAIN}, hm.{$TS_DOMAIN}, home.{$LOCAL_DOMAIN}, home.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:3000
+	tls internal
+}

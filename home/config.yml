@@ -1,0 +1,21 @@
+title: Meow!
+theme: sepia
+services:
+  - title: Adguard Home
+    description: DNS, ad blocking, and routing
+    link: https://adguard.dis.cat/
+    icon:
+      name: simple-icons:adguard
+      wrap: true
+      color: '#eb215d'
+    status:
+      enabled: true
+  - title: Syncthing
+    description: File sync
+    link: https://syncthing.dis.cat/
+    icon:
+      name: simple-icons:syncthing
+      wrap: true
+      color: '#eb215d'
+    status:
+      enabled: true
