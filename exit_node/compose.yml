@@ -1,14 +1,14 @@
 services:
-  gluetun:
+  gluetun_exit:
     image: docker.io/qmcgaw/gluetun:v3
-    container_name: gluetun
+    container_name: gluetun_exit
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
     devices:
       - /dev/net/tun:/dev/net/tun
     volumes:
-      - gluetun_data:/gluetun
+      - gluetun_exit_data:/gluetun
     environment:
       - VPN_SERVICE_PROVIDER=airvpn
       - VPN_TYPE=wireguard
@@ -20,11 +20,11 @@ services:
       - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY:?ERROR! Please provide the wireguard preshared key!!!}
       - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?ERROR! Please provide the wireguard addresses!!!}
       
-  gluetun-tailscale:
+  gluetun_tailscale:
     image: docker.io/tailscale/tailscale:latest
-    container_name: gluetun-tailscale
+    container_name: gluetun_tailscale
     restart: unless-stopped
-    network_mode: "service:gluetun"
+    network_mode: "service:gluetun_exit"
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -39,9 +39,9 @@ services:
       - TS_EXTRA_ARGS=--advertise-exit-node
       - TS_NO_LOGS_NO_SUPPORT=true
     depends_on:
-      gluetun:
+      gluetun_exit:
         condition: service_healthy
 
 volumes:
-  gluetun_data:
+  gluetun_exit_data:
   tailscale_data:

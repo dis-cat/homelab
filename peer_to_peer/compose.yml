@@ -1,0 +1,53 @@
+services:
+  gluetun_p2p:
+    image: docker.io/qmcgaw/gluetun:v3
+    container_name: gluetun_p2p
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - ${SLSKD_FWD_PORT}:${SLSKD_FWD_PORT}/tcp
+      - 5030:5030
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - gluetun_p2p_data:/gluetun
+    environment:
+      - VPN_SERVICE_PROVIDER=airvpn
+      - VPN_TYPE=wireguard
+      - WIREGUARD_MTU=1400
+      - TZ=${TZ:?ERROR! Please provide the timezone!!!}
+      - UPDATER_PERIOD=24h
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY:?ERROR! Please provide the wireguard private key!!!}
+      - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY:?ERROR! Please provide the wireguard preshared key!!!}
+      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?ERROR! Please provide the wireguard addresses!!!}
+      - FIREWALL_VPN_INPUT_PORTS=${SLSKD_FWD_PORT:?ERROR! Please provide the slskd forwarded port!!!}
+      
+  slskd:
+    image: docker.io/slskd/slskd:latest
+    restart: unless-stopped
+    network_mode: "service:gluetun_p2p"
+    volumes:
+      - slskd_data:/app/data:rw
+      - slskd_config:/app/slskd.yml:rw
+      - slskd_scripts:/app/scripts:rw
+      - /media/bulk/music/library:/music:ro
+      - /media/bulk/music/downloads:/app/downloads:rw
+      - /media/bulk/downloads:/app/incomplete:rw
+    environment:
+      - SLSKD_REMOTE_CONFIGURATION=true
+      - "SLSKD_SHARED_DIR=/music"
+      - SLSKD_SLSK_USERNAME=${SLSKD_SLSK_USERNAME:?ERROR! Please provide your soulseek username!!!}
+      - SLSKD_SLSK_PASSWORD=${SLSKD_SLSK_PASSWORD:?ERROR! Please provide your soulseek user password!!!}
+      - SLSKD_USERNAME=${SLSKD_USERNAME:?ERROR! Please provide your soulseek webui username!!!}
+      - SLSKD_PASSWORD=${SLSKD_PASSWORD:?ERROR! Please provide your soulseek webui password!!!}
+      - SLSKD_SLSK_LISTEN_PORT=${SLSKD_FWD_PORT}
+    depends_on:
+      gluetun_p2p:
+        condition: service_healthy
+    
+volumes:
+  gluetun_p2p_data:
+  slskd_data:
+  slskd_scripts:
+  slskd_config:

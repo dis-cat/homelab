@@ -13,3 +13,8 @@ hm.{$LOCAL_DOMAIN}, hm.{$TS_DOMAIN}, home.{$LOCAL_DOMAIN}, home.{$TS_DOMAIN} {
 	reverse_proxy host.containers.internal:3000
 	tls internal
 }
+# SLSK WebUI
+ss.{$LOCAL_DOMAIN}, ss.{$TS_DOMAIN}, slsk.{$LOCAL_DOMAIN}, slsk.{TS_DOMAIN} {
+	reverse_proxy host.containers.internal:5030
+	tls internal
+}

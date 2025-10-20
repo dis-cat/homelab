@@ -23,6 +23,7 @@ Various self hosted services built on podman containers and served remotely thro
 		- sudo snap install --classic helix
 		- sudo apt install fish bat net-tools
 		- chsh -s $(which fish)
+		- fish
 		- alias --save bat batcat
 		- (edit ~/.config/fish/config.fish)
 			- set -gx EDITOR 'hx'
@@ -59,6 +60,8 @@ Various self hosted services built on podman containers and served remotely thro
 - PODMAN-COMPOSE:
 	- sudo podman-compose systemd -a create-unit
 	- sudo loginctl enable-linger <user>
+	- sudo usermod --add-subuids 100000-165535 $USER
+	- sudo usermod --add-subgids 100000-165535 $USER
 
 ### Services
 - DNS: (start in homelab/dns)
@@ -166,3 +169,14 @@ Various self hosted services built on podman containers and served remotely thro
 - HOME: (start in homelab/home)
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@home
+
+- PEER_TO_PEER:
+	- (format media drive if necessary)
+	- (automount media drive by editing fstab)
+	- (create media subfolders and chown them to user:user)
+	- (setup .env)
+	- sudo ufw allow in on enp0s31f6 to any port <slskd fwd port>
+	- podman-compose systemd -a register
+	- systemctl --user enable --now podman-compose@peer_to_peer
+	- sudo apt install beets
+	- cp beets_config.yml ~/.config/beets/config.yaml

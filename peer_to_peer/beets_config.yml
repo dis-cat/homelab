@@ -1,0 +1,30 @@
+directory: /media/bulk/music/library
+
+import:
+    autotag: yes
+    move: yes
+    copy: no
+    timid: no
+    incremental: no
+    resume: no
+    write: yes
+    delete: no
+    none_rec_action: asis
+    
+match:
+    strong_rec_thresh: 0.70
+
+paths:
+    default: $albumartist/$album%aunique{} [$year]/$track - $title
+    singleton: $artist/Non-Album/$title
+
+art_filename: cover
+
+plugins: [embedart, fetchart]
+
+embedart:
+    maxwidth: 0
+    compare_threshold: 0
+
+fetchart:
+    maxwidth: 0
