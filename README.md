@@ -180,3 +180,7 @@ Various self hosted services built on podman containers and served remotely thro
 	- systemctl --user enable --now podman-compose@peer_to_peer
 	- sudo apt install beets
 	- cp beets_config.yml ~/.config/beets/config.yaml
+
+- MEDIA:
+	- podman-compose systemd -a register
+	- systemctl --user enable --now podman-compose@media

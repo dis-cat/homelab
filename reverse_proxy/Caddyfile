@@ -18,3 +18,8 @@ ss.{$LOCAL_DOMAIN}, ss.{$TS_DOMAIN}, slsk.{$LOCAL_DOMAIN}, slsk.{TS_DOMAIN} {
 	reverse_proxy host.containers.internal:5030
 	tls internal
 }
+# Navidrome
+nv.{$LOCAL_DOMAIN}, nv.{$TS_DOMAIN}, navidrome.{$LOCAL_DOMAIN}, navidrome.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:4533
+	tls internal
+}

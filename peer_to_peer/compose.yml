@@ -29,7 +29,6 @@ services:
     network_mode: "service:gluetun_p2p"
     volumes:
       - slskd_data:/app/data:rw
-      - slskd_config:/app/slskd.yml:rw
       - slskd_scripts:/app/scripts:rw
       - /media/bulk/music/library:/music:ro
       - /media/bulk/music/downloads:/app/downloads:rw
@@ -50,4 +49,3 @@ volumes:
   gluetun_p2p_data:
   slskd_data:
   slskd_scripts:
-  slskd_config:
