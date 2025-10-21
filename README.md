@@ -3,7 +3,13 @@
 Various self hosted services built on podman containers and served remotely through tailscale.
 
 ## Services
-
+- caddy: reverse proxy
+- tailscale exit node: secure remote connectivity and vpn (at the same time!)
+- adguard home: dns
+- syncthing: file syncing
+- mafl: home page
+- slskd: music sharing
+- navidrome: music streaming
 
 ## Dependencies
 - tailscale

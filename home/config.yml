@@ -19,3 +19,21 @@ services:
       color: '#eb215d'
     status:
       enabled: true
+  - title: SoulSeek
+    description: Peer-to-peer music sharing
+    link: https://slsk.dis.cat/
+    icon:
+      url: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/soulseek.webp
+      wrap: true
+      color: '#eb215d'
+    status:
+      enabled: true
+  - title: Navidrome
+    description: Music streaming
+    link: https://navidrome.dis.cat/
+    icon:
+      url: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/navidrome.svg
+      wrap: true
+      color: '#eb215d'
+    status:
+      enabled: true
