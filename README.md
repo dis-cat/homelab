@@ -12,6 +12,7 @@ Various self hosted services built on podman containers and served remotely thro
 - navidrome: music streaming
 
 ## Dependencies
+- ubuntu 25.10
 - tailscale
 - podman-compose
 - ufw
