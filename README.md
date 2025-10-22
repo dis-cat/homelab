@@ -40,7 +40,7 @@ Various self hosted services built on podman containers and served remotely thro
   
 - SSH:
 	- (edit /etc/ssh/sshd_config)
-		- #Port 22 -> Port <new ssh port>
+		- #Port 22 -> Port (new ssh port)
 		- #PasswordAuthentication yes -> PasswordAuthentication no
 	- systemctl daemon-reload
 	- systemctl restart ssh.socket
@@ -48,25 +48,25 @@ Various self hosted services built on podman containers and served remotely thro
 
 - UFW:
 	- sudo ufw enable
-	- sudo ufw allow from <ipv4 subnet> to any port <new ssh port>
-	- sudo ufw allow from <ipv6 subnet> to any port <new ssh port>
-	- sudo ufw allow in on tailscale0 to any port <new ssh port>
+	- sudo ufw allow from (ipv4 subnet) to any port (new ssh port)
+	- sudo ufw allow from (ipv6 subnet) to any port (new ssh port)
+	- sudo ufw allow in on tailscale0 to any port (new ssh port)
 	- sudo ufw defualt allow outgoing
 	- sudo ufw default deny incoming
 
 - GIT:
-	- ssh-keygen -t ed25519 -C "<email>"
+	- ssh-keygen -t ed25519 -C "(email)"
 	- ssh-agent -s
 	- ssh-add ~/.ssh/id_ed25519
 	- cat ~/.ssh/id_ed25519.pub
 	- (copy ssh key into github)
-	- git clone <github repository shh address>
-	- git config --global user.email "<email>"
-	- git config --global user.name "<name>"
+	- git clone (github repository shh address)
+	- git config --global user.email "(email)"
+	- git config --global user.name "(name)"
 	
 - PODMAN-COMPOSE:
 	- sudo podman-compose systemd -a create-unit
-	- sudo loginctl enable-linger <user>
+	- sudo loginctl enable-linger $USER
 	- sudo usermod --add-subuids 100000-165535 $USER
 	- sudo usermod --add-subgids 100000-165535 $USER
 
@@ -81,8 +81,8 @@ Various self hosted services built on podman containers and served remotely thro
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@dns
 	- (temporarily open ports for webui before reverse proxy is setup -- add tailscale or ipv6 instead if necessary)
-		- sudo ufw allow from <ipv4 subnet> to any port 3333
-		- sudo ufw allow from <ipv4 subnet> to any port 8080
+		- sudo ufw allow from (ipv4 subnet) to any port 3333
+		- sudo ufw allow from (ipv4 subnet) to any port 8080
 	- (connect to admin portal and finish intallation)
 	- (connect to dashboard and setup)
 	- upstream: 
@@ -130,8 +130,8 @@ Various self hosted services built on podman containers and served remotely thro
 	2001:67c:930::1
 	```
 	- dns rewrite:
-		- `*.lan-prefix.host.tld` -> <hostname>.local
-		- `*.host.tld` -> <server-ts-name>.<ts-fun-name>.ts.net
+		- `*.lan-prefix.host.tld` -> (hostname).local
+		- `*.host.tld` -> (server-ts-name).(ts-fun-name).ts.net
 	- (edit /etc/systemd/resolvd.conf)
 		- #DNS= -> DNS=127.0.0.1
 		- #FallbackDNS= -> FallbackDNS=9.9.9.9
@@ -141,17 +141,17 @@ Various self hosted services built on podman containers and served remotely thro
 	- (re-comment admin portal port map in compose.yml)
 	- systemctl --user restart podman-compose@dns
 	- (remove ufw rule for admin portal and dashboard)
-	- sudo ufw allow from <ipv4 subnet> to any port 53
-	- sudo ufw allow from <ipv6 subnet> to any port 53
+	- sudo ufw allow from (ipv4 subnet) to any port 53
+	- sudo ufw allow from (ipv6 subnet) to any port 53
 	- sudo ufw allow in on tailscale0 to any port 53
 	- (add local and tailnet ip to tailscale dns)
 	- (had to manually set dns for lan on mac... idk why)
 
 - REVERSE PROXY: (start in homelab/reverse_proxy)
-	- sudo ufw allow from <ipv4 subnet> to any port 80
-	- sudo ufw allow from <ipv4 subnet> to any port 443
-	- sudo ufw allow from <ipv6 subnet> to any port 80
-	- sudo ufw allow from <ipv6 subnet> to any port 443
+	- sudo ufw allow from (ipv4 subnet) to any port 80
+	- sudo ufw allow from (ipv4 subnet) to any port 443
+	- sudo ufw allow from (ipv6 subnet) to any port 80
+	- sudo ufw allow from (ipv6 subnet) to any port 443
 	- (setup .env)
 	- (external ceritifcates - https://blog.mni.li/posts/internal-tls-with-caddy/)
     - (in home dir)
@@ -163,8 +163,8 @@ Various self hosted services built on podman containers and served remotely thro
 		- cd acme.sh && ./acme.sh --install --cert-home ~/.certs --home /opt/acme.sh
 		- cd .. && rm -rf ./acme.sh
 		- fish_add_path /opt/acme.sh/
-		- acme.sh --register-account -m <email>
-		- acme.sh --issue -k 4096 -d "<TS_DOMAIN>" -d "*.<TS_DOMAIN>" --dns dns_acmedns --cert-home ~/.certs
+		- acme.sh --register-account -m (email)
+		- acme.sh --issue -k 4096 -d "(TS_DOMAIN)" -d "*.(TS_DOMAIN)" --dns dns_acmedns --cert-home ~/.certs
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@reverse_proxy
 
@@ -174,7 +174,7 @@ Various self hosted services built on podman containers and served remotely thro
 	- systemctl --user enable --now podman-compose@exit_node
 
 - FILE SYNC: (start in homelab/file_sync)
-	- sudo ufw allow in on <main interface> to any port 22000
+	- sudo ufw allow in on (main interface) to any port 22000
 	- (setup .env)
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@file_sync
@@ -182,7 +182,7 @@ Various self hosted services built on podman containers and served remotely thro
 		- (add username and password)
 		- Connections/Global Discovery: ✓
 	- (add server device from laptop to share previous folders)
-		- Sharing/Addresses: tcp://<server-ts-name>.<ts-fun-name>.ts.net:22000
+		- Sharing/Addresses: tcp://(server-ts-name).(ts-fun-name).ts.net:22000
 	- (add other devices and folders)
 
 - HOME: (start in homelab/home)
@@ -194,7 +194,7 @@ Various self hosted services built on podman containers and served remotely thro
 	- (automount media drive by editing fstab)
 	- (create media subfolders and chown them to user:user)
 	- (setup .env)
-	- sudo ufw allow in on enp0s31f6 to any port <slskd fwd port>
+	- sudo ufw allow in on enp0s31f6 to any port (slskd fwd port)
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@peer_to_peer
 	- sudo apt install beets
