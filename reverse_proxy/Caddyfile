@@ -1,25 +1,54 @@
+# Import external tls certificates
+(trusted_tls) {
+    tls /certs/{$TS_DOMAIN}/fullchain.cer /certs/{$TS_DOMAIN}/{$TS_DOMAIN}.key
+}
+
 # AdGuard Home dashboard
-agh.{$LOCAL_DOMAIN}, agh.{$TS_DOMAIN}, adguard.{$LOCAL_DOMAIN}, adguard.{$TS_DOMAIN} {
+agh.{$TS_DOMAIN}, adguard.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:8080
+	import trusted_tls
+}
+agh.{$LOCAL_DOMAIN}, adguard.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:8080
 	tls internal
 }
+
 # Syncthing WebUI
-st.{$LOCAL_DOMAIN}, st.{$TS_DOMAIN}, syncthing.{$LOCAL_DOMAIN}, syncthing.{$TS_DOMAIN} {
+st.{$TS_DOMAIN}, syncthing.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:8384
+	import trusted_tls
+}
+st.{$LOCAL_DOMAIN}, syncthing.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:8384
 	tls internal
 }
+
 # MAFL Homepage
-hm.{$LOCAL_DOMAIN}, hm.{$TS_DOMAIN}, home.{$LOCAL_DOMAIN}, home.{$TS_DOMAIN} {
+hm.{$TS_DOMAIN}, home.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:3000
+	import trusted_tls
+}
+hm.{$LOCAL_DOMAIN}, home.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:3000
 	tls internal
 }
+
 # SLSK WebUI
-ss.{$LOCAL_DOMAIN}, ss.{$TS_DOMAIN}, slsk.{$LOCAL_DOMAIN}, slsk.{TS_DOMAIN} {
+ss.{$TS_DOMAIN}, slsk.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:5030
+	import trusted_tls
+}
+ss.{$LOCAL_DOMAIN}, slsk.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:5030
 	tls internal
 }
+
 # Navidrome
-nv.{$LOCAL_DOMAIN}, nv.{$TS_DOMAIN}, navidrome.{$LOCAL_DOMAIN}, navidrome.{$TS_DOMAIN} {
+nv.{$TS_DOMAIN}, navidrome.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:4533
+	import trusted_tls
+}
+nv.{$LOCAL_DOMAIN}, navidrome.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:4533
 	tls internal
 }

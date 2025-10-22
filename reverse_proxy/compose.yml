@@ -9,6 +9,7 @@ services:
       - TS_DOMAIN=${TS_DOMAIN:?ERROR! Please provide the tailscale domain name!!!}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
+      - ${CERTS_DIR:?ERROR! Please provide the acme.sh certs directory!!!}:/certs
       - caddy_data_site:/srv
       - caddy_data_data:/data
       - caddy_data_config:/config

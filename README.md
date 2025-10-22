@@ -152,6 +152,18 @@ Various self hosted services built on podman containers and served remotely thro
 	- sudo ufw allow from <ipv6 subnet> to any port 80
 	- sudo ufw allow from <ipv6 subnet> to any port 443
 	- (setup .env)
+	- (external ceritifcates - https://blog.mni.li/posts/internal-tls-with-caddy/)
+    - (in home dir)
+		- git clone https://github.com/acmesh-official/acme.sh.git
+		- mkdir .certs
+		- sudo mkdir /opt/acme.sh
+		- sudo chown $USER:$USER /opt/acme.sh
+		- crontab -e
+		- cd acme.sh && ./acme.sh --install --cert-home ~/.certs --home /opt/acme.sh
+		- cd .. && rm -rf ./acme.sh
+		- fish_add_path /opt/acme.sh/
+		- acme.sh --register-account -m <email>
+		- acme.sh --issue -k 4096 -d "<TS_DOMAIN>" -d "*.<TS_DOMAIN>" --dns dns_acmedns --cert-home ~/.certs
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@reverse_proxy
 
