@@ -189,7 +189,7 @@ Various self hosted services built on podman containers and served remotely thro
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@home
 
-- PEER_TO_PEER:
+- PEER_TO_PEER (move to homelab/peer_to_peer after drive setup):
 	- (format media drive if necessary)
 	- (automount media drive by editing fstab)
 	- (create media subfolders and chown them to user:user)
@@ -200,6 +200,6 @@ Various self hosted services built on podman containers and served remotely thro
 	- sudo apt install beets
 	- cp beets_config.yml ~/.config/beets/config.yaml
 
-- MEDIA:
+- MEDIA (start in homelab/media):
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@media
