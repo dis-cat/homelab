@@ -10,5 +10,17 @@ services:
     environment:
       - ND_ENABLEINSIGHTSCOLLECTOR=false
 
+  mikochi:
+    image: docker.io/zer0tonin/mikochi:latest
+    restart: unless-stopped
+    ports:
+      - 8000:8080
+    volumes:
+      - /media/bulk:/data
+    environment:
+      - DATA_DIR=/data
+      - USERNAME=${MIKOCHI_USERNAME:?ERROR! Please provide the mikochi username!!!}
+      - PASSWORD=${MIKOCHI_PASSWORD:?ERROR! Please provide the mikochi password!!!}
+  
 volumes:
   navidrome_data:

@@ -52,3 +52,13 @@ nv.{$LOCAL_DOMAIN}, navidrome.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:4533
 	tls internal
 }
+
+# Mikochi
+mk.{$TS_DOMAIN}, mikochi.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:8000
+	import trusted_tls
+}
+mk.{$LOCAL_DOMAIN}, mikochi.{$LOCAL_DOMAIN} {
+	reverse_proxy host.containers.internal:8000
+	tls internal
+}
