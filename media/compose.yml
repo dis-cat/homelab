@@ -3,7 +3,7 @@ services:
     image: docker.io/deluan/navidrome:latest
     restart: unless-stopped
     ports:
-      - "4533:4533"
+      - 4533:4533
     volumes:
       - navidrome_data:/data
       - /media/bulk/music/library:/music:ro

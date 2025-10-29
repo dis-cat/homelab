@@ -37,3 +37,12 @@ services:
       color: '#eb215d'
     status:
       enabled: true
+  - title: Mikochi
+    description: Simple file management
+    link: https://mikochi.dis.cat/
+    icon:
+      name: lsicon:leaf-filled
+      wrap: true
+      color: '#eb215d'
+    status:
+      enabled: true
