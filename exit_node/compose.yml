@@ -16,9 +16,9 @@ services:
       - TZ=${TZ:?ERROR! Please provide the timezone!!!}
       - UPDATER_PERIOD=24h
       - DNS_KEEP_NAMESERVER=on
-      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY:?ERROR! Please provide the wireguard private key!!!}
-      - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY:?ERROR! Please provide the wireguard preshared key!!!}
-      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?ERROR! Please provide the wireguard addresses!!!}
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY:?Please provide the wireguard private key!}
+      - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY:?Please provide the wireguard preshared key!}
+      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?Please provide the wireguard addresses!}
       
   gluetun_tailscale:
     image: docker.io/tailscale/tailscale:latest
@@ -32,8 +32,8 @@ services:
       - tailscale_data:/var/lib/tailscale:rw
       - /dev/net/tun:/dev/net/tun
     environment:
-      - TS_HOSTNAME=${TS_HOSTNAME:?ERROR! Please provide the tailscale hostname!!!}
-      - TS_AUTHKEY=${TS_AUTHKEY:?ERROR! Please provide the tailscale authkey!!!}
+      - TS_HOSTNAME=${TS_HOSTNAME:?Please provide the tailscale hostname!}
+      - TS_AUTHKEY=${TS_AUTHKEY:?Please provide the tailscale authkey!}
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_ACCEPT_DNS=true
       - TS_EXTRA_ARGS=--advertise-exit-node

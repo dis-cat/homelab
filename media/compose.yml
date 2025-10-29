@@ -19,8 +19,25 @@ services:
       - /media/bulk:/data
     environment:
       - DATA_DIR=/data
-      - USERNAME=${MIKOCHI_USERNAME:?ERROR! Please provide the mikochi username!!!}
-      - PASSWORD=${MIKOCHI_PASSWORD:?ERROR! Please provide the mikochi password!!!}
-  
+      - USERNAME=${MIKOCHI_USERNAME:?Please provide the mikochi username!}
+      - PASSWORD=${MIKOCHI_PASSWORD:?Please provide the mikochi password!}
+
+  ytptube:
+    image: docker.io/arabcoders/ytptube:latest
+    container_name: ytptube
+    restart: unless-stopped
+    user: 0:0
+    ports:
+      - 8081:8081
+    volumes:
+      - ytptube_config:/config:rw
+      - /media/bulk/videos:/downloads:rw
+    tmpfs:
+      - /tmp
+    environment:
+      - YTP_AUTH_USERNAME=${YTP_USERNAME:?Please provide the ytptube username!}
+      - YTP_AUTH_PASSWORD=${YTP_PASSWORD:?Please provide the ytptube password!}
+
 volumes:
   navidrome_data:
+  ytptube_config:

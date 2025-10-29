@@ -3,7 +3,7 @@ services:
     image: docker.io/syncthing/syncthing:latest
     container_name: syncthing
     restart: unless-stopped
-    hostname: ${HOSTNAME:?ERROR! Please provide the syncthing host name!!!}
+    hostname: ${HOSTNAME:?Please provide the syncthing host name!}
     volumes:
       - syncthing_data:/var/syncthing
     ports:

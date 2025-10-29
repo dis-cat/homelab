@@ -12,7 +12,7 @@ services:
       - 53:53/tcp
       - 53:53/udp
     environment:
-      - TZ=${TZ:?ERROR! Please provide the timezone!!!}
+      - TZ=${TZ:?Please provide the timezone!}
     volumes:
       - adguard_data_work:/opt/adguardhome/work
       - adguard_data_conf:/opt/adguardhome/conf

@@ -3,7 +3,7 @@
     tls /certs/{$TS_DOMAIN}/fullchain.cer /certs/{$TS_DOMAIN}/{$TS_DOMAIN}.key
 }
 
-# AdGuard Home dashboard
+# AdGuard Home
 agh.{$TS_DOMAIN}, adguard.{$TS_DOMAIN} {
 	reverse_proxy host.containers.internal:8080
 	import trusted_tls
@@ -13,7 +13,7 @@ agh.{$LOCAL_DOMAIN}, adguard.{$LOCAL_DOMAIN} {
 	tls internal
 }
 
-# Syncthing WebUI
+# Syncthing
 st.{$TS_DOMAIN}, syncthing.{$TS_DOMAIN} {
 	reverse_proxy host.containers.internal:8384
 	import trusted_tls
@@ -23,7 +23,7 @@ st.{$LOCAL_DOMAIN}, syncthing.{$LOCAL_DOMAIN} {
 	tls internal
 }
 
-# MAFL Homepage
+# MAFL (home page)
 hm.{$TS_DOMAIN}, home.{$TS_DOMAIN} {
 	reverse_proxy host.containers.internal:3000
 	import trusted_tls
@@ -33,7 +33,7 @@ hm.{$LOCAL_DOMAIN}, home.{$LOCAL_DOMAIN} {
 	tls internal
 }
 
-# SLSK WebUI
+# Soulseek
 ss.{$TS_DOMAIN}, slsk.{$TS_DOMAIN} {
 	reverse_proxy host.containers.internal:5030
 	import trusted_tls
@@ -53,12 +53,22 @@ nv.{$LOCAL_DOMAIN}, navidrome.{$LOCAL_DOMAIN} {
 	tls internal
 }
 
-# Mikochi
+# Mikochi (file browser)
 mk.{$TS_DOMAIN}, mikochi.{$TS_DOMAIN} {
 	reverse_proxy host.containers.internal:8000
 	import trusted_tls
 }
 mk.{$LOCAL_DOMAIN}, mikochi.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:8000
+	tls internal
+}
+
+# Ytptube (yt-dlp web ui)
+yt.{$TS_DOMAIN}, ytptube.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:8081
+	import trusted_tls
+}
+yt.{$LOCAL_DOMAIN}, ytptube.{$LOCAL_DOMAIN} {
+	reverse_proxy host.containers.internal:8081
 	tls internal
 }

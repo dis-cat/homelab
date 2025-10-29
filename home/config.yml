@@ -23,7 +23,7 @@ services:
     description: Peer-to-peer music sharing
     link: https://slsk.dis.cat/
     icon:
-      url: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/soulseek.webp
+      name: game-icons:feather
       wrap: true
       color: '#eb215d'
     status:
@@ -32,7 +32,7 @@ services:
     description: Music streaming
     link: https://navidrome.dis.cat/
     icon:
-      url: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/navidrome.svg
+      url: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNlYjIxNWQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTI0IDIuNUEyMS41IDIxLjUgMCAxIDAgNDUuNSAyNEEyMS41MSAyMS41MSAwIDAgMCAyNCAyLjVNMjQgOEExNi4wNiAxNi4wNiAwIDAgMCA4IDI0aDBtMTYtMTAuMzhBMTAuMzggMTAuMzggMCAwIDAgMTMuNjIgMjRoME0yNCAxNy44NkE2LjE0IDYuMTQgMCAxIDEgMTcuODYgMjRBNi4xNCA2LjE0IDAgMCAxIDI0IDE3Ljg2bTAgMTYuNTJBMTAuMzggMTAuMzggMCAwIDAgMzQuMzggMjRoME0yNCA0MC4wNWExNi4wNiAxNi4wNiAwIDAgMCAxNi0xNmgwIiBzdHJva2Utd2lkdGg9IjIuNSIvPjwvc3ZnPg==
       wrap: true
       color: '#eb215d'
     status:
@@ -42,6 +42,15 @@ services:
     link: https://mikochi.dis.cat/
     icon:
       name: lsicon:leaf-filled
+      wrap: true
+      color: '#eb215d'
+    status:
+      enabled: true
+  - title: Ytptube
+    description: Yt-dlp web ui
+    link: https://ytptube.dis.cat/
+    icon:
+      name: mdi:youtube
       wrap: true
       color: '#eb215d'
     status:
