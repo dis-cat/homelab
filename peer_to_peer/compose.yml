@@ -8,9 +8,10 @@ services:
     ports:
       - ${SLSKD_FWD_PORT}:${SLSKD_FWD_PORT}/tcp
       - 5030:5030
-      - 8099:8080
       - ${QBITTORRENT_FWD_PORT}:${QBITTORRENT_FWD_PORT}/tcp
       - ${QBITTORRENT_FWD_PORT}:${QBITTORRENT_FWD_PORT}/udp
+      - 8099:8080
+      - 9117:9117
     devices:
       - /dev/net/tun:/dev/net/tun
     volumes:
@@ -65,9 +66,24 @@ services:
     depends_on:
       gluetun_p2p:
         condition: service_healthy
+
+  jackett:
+    image: docker.io/linuxserver/jackett:latest
+    container_name: jackett
+    restart: unless-stopped
+    network_mode: "service:gluetun_p2p"
+    volumes:
+      - jackett_data:/config
+      - /media/bulk/torrents/in:/torrents
+    environment:
+      - PUID=0
+      - GUID=0
+      - TZ=${TZ}
+      - AUTO_UPDATE=true
     
 volumes:
   gluetun_p2p_data:
   slskd_data:
   slskd_scripts:
   qbittorrent_data:
+  jackett_data:

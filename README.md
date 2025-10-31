@@ -203,6 +203,9 @@ Various self hosted services built on podman containers and served remotely thro
 	- (configure qbittorrent login, port, download folder, etc. in webui)
 	- (may need to restart the qbittorrent container after gluetun is healthy if qbit cannot connect)
 		- TODO: fix this ^^^
+	- (install jackett plugin)
+	- (setup .jackett.json)
+	- podman cp .jackett.json qbittorrent:/config/qBittorrent/nova3/engines/jackett.json
 
 - MEDIA (start in homelab/media):
 	- podman-compose systemd -a register

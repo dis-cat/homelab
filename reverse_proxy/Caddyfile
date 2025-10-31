@@ -82,3 +82,13 @@ qb.{$LOCAL_DOMAIN}, qbittorrent.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:8099
 	tls internal
 }
+
+# Jackett
+jk.{$TS_DOMAIN}, jackett.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:9117
+	import trusted_tls
+}
+jk.{$LOCAL_DOMAIN}, jackett.{$LOCAL_DOMAIN} {
+	reverse_proxy host.containers.internal:9117
+	tls internal
+}
