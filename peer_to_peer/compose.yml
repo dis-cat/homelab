@@ -8,6 +8,9 @@ services:
     ports:
       - ${SLSKD_FWD_PORT}:${SLSKD_FWD_PORT}/tcp
       - 5030:5030
+      - 8099:8080
+      - ${QBITTORRENT_FWD_PORT}:${QBITTORRENT_FWD_PORT}/tcp
+      - ${QBITTORRENT_FWD_PORT}:${QBITTORRENT_FWD_PORT}/udp
     devices:
       - /dev/net/tun:/dev/net/tun
     volumes:
@@ -16,12 +19,12 @@ services:
       - VPN_SERVICE_PROVIDER=airvpn
       - VPN_TYPE=wireguard
       - WIREGUARD_MTU=1400
-      - TZ=${TZ:?Please provide the timezone!!!}
+      - TZ=${TZ:?Please provide the timezone!}
       - UPDATER_PERIOD=24h
-      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY:?Please provide the wireguard private key!!!}
-      - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY:?Please provide the wireguard preshared key!!!}
-      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?Please provide the wireguard addresses!!!}
-      - FIREWALL_VPN_INPUT_PORTS=${SLSKD_FWD_PORT:?Please provide the slskd forwarded port!!!}
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY:?Please provide the wireguard private key!}
+      - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY:?Please provide the wireguard preshared key!}
+      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?Please provide the wireguard addresses!}
+      - FIREWALL_VPN_INPUT_PORTS=${SLSKD_FWD_PORT:?Please provide the slskd forwarded port!},${QBITTORRENT_FWD_PORT:?Please provide the qbittorrent forwarded port!}
       
   slskd:
     image: docker.io/slskd/slskd:latest
@@ -32,7 +35,7 @@ services:
       - slskd_scripts:/app/scripts:rw
       - /media/bulk/music/library:/music:ro
       - /media/bulk/music/downloads:/app/downloads:rw
-      - /media/bulk/downloads:/app/incomplete:rw
+      - /media/bulk/music/incomplete:/app/incomplete:rw
     environment:
       - SLSKD_REMOTE_CONFIGURATION=true
       - "SLSKD_SHARED_DIR=/music"
@@ -44,8 +47,27 @@ services:
     depends_on:
       gluetun_p2p:
         condition: service_healthy
+
+  qbittorrent:
+    image: docker.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    restart: unless-stopped
+    network_mode: "service:gluetun_p2p"
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=${TZ}
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=${QBITTORRENT_FWD_PORT}
+    volumes:
+      - qbittorrent_data:/config
+      - /media/bulk:/data
+    depends_on:
+      gluetun_p2p:
+        condition: service_healthy
     
 volumes:
   gluetun_p2p_data:
   slskd_data:
   slskd_scripts:
+  qbittorrent_data:

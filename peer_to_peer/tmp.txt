@@ -1,0 +1,22 @@
+× podman-compose@peer_to_peer.service - peer_to_peer rootless pod (podman-compose)
+     Loaded: loaded (/etc/systemd/user/podman-compose@.service; enabled; preset: enabled)
+     Active: failed (Result: exit-code) since Fri 2025-10-31 00:03:53 UTC; 8min ago
+   Duration: 148ms
+ Invocation: 2e1d336f4b1d4c128354ae6400b72a6f
+    Process: 358585 ExecStartPre=/usr/bin/podman-compose up --no-start (code=exited, status=0/SUCCESS)
+    Process: 358717 ExecStartPre=/usr/bin/podman pod start pod_peer_to_peer (code=exited, status=0/SUCCESS)
+    Process: 358731 ExecStart=/usr/bin/podman-compose wait (code=exited, status=125)
+   Main PID: 358731 (code=exited, status=125)
+   Mem peak: 31.6M
+        CPU: 690ms
+
+Oct 31 00:03:53 marceline podman[358644]: 2025-10-31 00:03:53.414635275 +0000 UTC m=+0.018409864 image pull 5bf014748996266f47e04cc019bde17eaef9deddd0e1288f87ac39268dc54d18 docker.io/qmcgaw/gluetun:v3
+Oct 31 00:03:53 marceline podman-compose[358679]: Error: creating container storage: the container name "peer_to_peer_slskd_1" is already in use by ae80ea3cd0c653bc6eeff2b1a71c99635a0144c106928141b2c60ef26ef2adc5. You have to remove that container to be able to reuse that name: that name is already in use, or use --replace to instruct Podman to do so.
+Oct 31 00:03:53 marceline podman[358679]: 2025-10-31 00:03:53.526172193 +0000 UTC m=+0.023242248 image pull fe214b39229397a9c59205b0cf390ec6c656806c6b2ad7ba13108f30b7067e2f docker.io/slskd/slskd:latest
+Oct 31 00:03:53 marceline podman-compose[358705]: Error: --userns and --pod cannot be set together
+Oct 31 00:03:53 marceline podman[358717]: 2025-10-31 00:03:53.661107713 +0000 UTC m=+0.025106771 pod start 0cae1bff1139b0110137ba21b3854fba4a8c10fa2d21ce9183cacc62a0a87022 (image=, name=pod_peer_to_peer)
+Oct 31 00:03:53 marceline podman[358717]: pod_peer_to_peer
+Oct 31 00:03:53 marceline systemd[1488]: Started podman-compose@peer_to_peer.service - peer_to_peer rootless pod (podman-compose).
+Oct 31 00:03:53 marceline podman-compose[358731]: Error: no container with name or ID "qbittorrent" found: no such container
+Oct 31 00:03:53 marceline systemd[1488]: podman-compose@peer_to_peer.service: Main process exited, code=exited, status=125/n/a
+Oct 31 00:03:53 marceline systemd[1488]: podman-compose@peer_to_peer.service: Failed with result 'exit-code'.

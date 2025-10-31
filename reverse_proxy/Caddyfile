@@ -72,3 +72,13 @@ yt.{$LOCAL_DOMAIN}, ytptube.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:8081
 	tls internal
 }
+
+# Qbittorrent
+qb.{$TS_DOMAIN}, qbittorrent.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:8099
+	import trusted_tls
+}
+qb.{$LOCAL_DOMAIN}, qbittorrent.{$LOCAL_DOMAIN} {
+	reverse_proxy host.containers.internal:8099
+	tls internal
+}

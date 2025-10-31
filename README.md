@@ -195,10 +195,14 @@ Various self hosted services built on podman containers and served remotely thro
 	- (create media subfolders and chown them to user:user)
 	- (setup .env)
 	- sudo ufw allow in on enp0s31f6 to any port (slskd fwd port)
+	- sudo ufw allow in on enp0s31f6 to any port (qbittorrent fwd port)
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@peer_to_peer
 	- sudo apt install beets
 	- cp beets_config.yml ~/.config/beets/config.yaml
+	- (configure qbittorrent login, port, download folder, etc. in webui)
+	- (may need to restart the qbittorrent container after gluetun is healthy if qbit cannot connect)
+		- TODO: fix this ^^^
 
 - MEDIA (start in homelab/media):
 	- podman-compose systemd -a register
