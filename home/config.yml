@@ -64,12 +64,20 @@ services:
       color: '#eb215d'
     status:
       enabled: true
-      
   - title: Jackett
     description: Torrent search
     link: https://jackett.dis.cat/
     icon:
       name: game-icons:lab-coat
+      wrap: true
+      color: '#eb215d'
+    status:
+      enabled: true
+  - title: Jellyfin
+    description: Media streaming
+    link: https://jellyfin.dis.cat/
+    icon:
+      name: simple-icons:jellyfin
       wrap: true
       color: '#eb215d'
     status:

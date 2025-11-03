@@ -92,3 +92,13 @@ jk.{$LOCAL_DOMAIN}, jackett.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:9117
 	tls internal
 }
+
+# Jellyfin
+jf.{$TS_DOMAIN}, jellyfin.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:8096
+	import trusted_tls
+}
+jf.{$LOCAl_DOMAIN}, jellyfin.{$LOCAL_DOMAIN} {
+	reverse_proxy host.containers.internal:8096
+	tls internal
+}

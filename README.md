@@ -10,6 +10,11 @@ Various self hosted services built on podman containers and served remotely thro
 - mafl: home page
 - slskd: music sharing
 - navidrome: music streaming
+- mikochi: simple file browsing
+- ytptube: youtube archiving
+- qbittorrent: torrenting
+- jackett: torrent search
+- jellyfin: media streaming
 
 ## Dependencies
 - ubuntu 25.10

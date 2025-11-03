@@ -38,6 +38,21 @@ services:
       - YTP_AUTH_USERNAME=${YTP_USERNAME:?Please provide the ytptube username!}
       - YTP_AUTH_PASSWORD=${YTP_PASSWORD:?Please provide the ytptube password!}
 
+  jellyfin:
+    image: docker.io/jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+    ports:
+      - 8096:8096/tcp
+    volumes:
+      - jellyfin_config:/config
+      - jellyfin_cache:/cache
+      - /media/bulk/movies:/movies:ro
+      - /media/bulk/shows:/shows:ro
+      - /media/bulk/music/library:/music:ro
+
 volumes:
   navidrome_data:
   ytptube_config:
+  jellyfin_config:
+  jellyfin_cache:
