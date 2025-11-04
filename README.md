@@ -213,5 +213,7 @@ Various self hosted services built on podman containers and served remotely thro
 	- podman cp .jackett.json qbittorrent:/config/qBittorrent/nova3/engines/jackett.json
 
 - MEDIA (start in homelab/media):
+	- sudo ufw allow in from (ipv4 subnet) to any port 8096 # optional to allow direct lan connection to jellyfin from tv
+	- sudo ufw allow in from (ipv6 subnet) to any port 8096 # optional to allow direct lan connection to jellyfin from tv
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@media
