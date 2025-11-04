@@ -7,11 +7,12 @@ services:
       - NET_ADMIN
     ports:
       - ${SLSKD_FWD_PORT}:${SLSKD_FWD_PORT}/tcp
-      - 5030:5030
+      - 5030:5030 # slskd
       - ${QBITTORRENT_FWD_PORT}:${QBITTORRENT_FWD_PORT}/tcp
       - ${QBITTORRENT_FWD_PORT}:${QBITTORRENT_FWD_PORT}/udp
-      - 8099:8080
-      - 9117:9117
+      - 8099:8080 # qbittorrent
+      - 9117:9117 # jackett
+      - 8191:8191 # flaresolverr
     devices:
       - /dev/net/tun:/dev/net/tun
     volumes:
@@ -80,6 +81,14 @@ services:
       - GUID=0
       - TZ=${TZ}
       - AUTO_UPDATE=true
+
+  flaresolverr:
+    image: docker.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    restart: unless-stopped
+    network_mode: "service:gluetun_p2p"
+    environment:
+      - LOG_LEVEL=info
     
 volumes:
   gluetun_p2p_data:
