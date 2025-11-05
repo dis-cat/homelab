@@ -68,9 +68,22 @@ services:
       - CUSTOM_USER=${CALIBRE_USERNAME:?Please provide the calibre username!}
       - PASSWORD=${CALIBRE_PASSWORD:?Please provide the calibre password!}
 
+  audiobookshelf:
+    image: docker.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    restart: unless-stopped
+    ports:
+      - 13378:80
+    volumes:
+      - audiobookshelf_config:/config
+      - /media/bulk/audiobooks/library:/audiobooks:rw
+      - /media/bulk/audiobooks/podcasts:/podcasts:rw
+      - /media/bulk/audiobooks/metadata:/metadata:rw
+
 volumes:
   navidrome_data:
   ytptube_config:
   jellyfin_config:
   jellyfin_cache:
   calibre_config:
+  audiobookshelf_config:

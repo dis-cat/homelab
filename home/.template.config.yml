@@ -1,0 +1,116 @@
+title: Meow!
+theme: sepia
+services:
+  Media:
+    - title: Audiobookshelf
+      description: Audiobook and podcast library
+      link: https://audiobookshelf.(tailscale domain)/
+      icon:
+        name: simple-icons:audiobookshelf
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
+    - title: Calibre Web
+      description: Simple E-Book library
+      link: https://calibre.(tailscale domain)/
+      icon:
+        name: mdi:bookshelf
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
+    - title: Jellyfin
+      description: Media streaming
+      link: https://jellyfin.(tailscale domain)/
+      icon:
+        name: simple-icons:jellyfin
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
+    - title: Navidrome
+      description: Music streaming
+      link: https://navidrome.(tailscale domain)/
+      icon:
+        url: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNlYjIxNWQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTI0IDIuNUEyMS41IDIxLjUgMCAxIDAgNDUuNSAyNEEyMS41MSAyMS41MSAwIDAgMCAyNCAyLjVNMjQgOEExNi4wNiAxNi4wNiAwIDAgMCA4IDI0aDBtMTYtMTAuMzhBMTAuMzggMTAuMzggMCAwIDAgMTMuNjIgMjRoME0yNCAxNy44NkE2LjE0IDYuMTQgMCAxIDEgMTcuODYgMjRBNi4xNCA2LjE0IDAgMCAxIDI0IDE3Ljg2bTAgMTYuNTJBMTAuMzggMTAuMzggMCAwIDAgMzQuMzggMjRoME0yNCA0MC4wNWExNi4wNiAxNi4wNiAwIDAgMCAxNi0xNmgwIiBzdHJva2Utd2lkdGg9IjIuNSIvPjwvc3ZnPg==
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
+    - title: Ytptube
+      description: Yt-dlp web ui
+      link: https://ytptube.(tailscale domain)/
+      icon:
+        name: mdi:youtube
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
+
+  Peer-to-Peer:
+    - title: Jackett
+      description: Torrent search
+      link: https://jackett.(tailscale domain)/
+      icon:
+        name: game-icons:lab-coat
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
+    - title: Qbittorrent
+      description: Torrenting
+      link: https://qbittorrent.(tailscale domain)/
+      icon:
+        name: simple-icons:qbittorrent
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
+    - title: SoulSeek
+      description: Peer-to-peer music sharing
+      link: https://slsk.(tailscale domain)/
+      icon:
+        name: game-icons:feather
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
+
+  Admin:
+    - title: Adguard Home
+      description: DNS, ad blocking, and routing
+      link: https://adguard.(tailscale domain)/
+      icon:
+        name: simple-icons:adguard
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
+    - title: Calibre Desktop
+      description: Calibre administration gui
+      link: https://calibre-desktop.(tailscale domain)/
+      icon:
+        name: game-icons:bookshelf
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
+    - title: Mikochi
+      description: Simple file management
+      link: https://mikochi.(tailscale domain)/
+      icon:
+        name: lsicon:leaf-filled
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
+    - title: Syncthing
+      description: File sync
+      link: https://syncthing.(tailscale domain)/
+      icon:
+        name: simple-icons:syncthing
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true

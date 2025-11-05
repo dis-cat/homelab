@@ -120,3 +120,13 @@ cl.{$LOCAL_DOMAIN}, calibre.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:8028
 	tls internal
 }
+
+# Audiobookshelf
+ab.{$TS_DOMAIN}, audiobookshelf.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:13378
+	import trusted_tls
+}
+ab.{$LOCAL_DOMAIN}, audiobookshelf.{$LOCAL_DOMAIN} {
+	reverse_proxy host.containers.internal:13378
+	tls internal
+}
