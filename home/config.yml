@@ -82,3 +82,21 @@ services:
       color: '#eb215d'
     status:
       enabled: true
+  - title: Calibre Desktop
+    description: Calibre administration gui
+    link: https://calibre-desktop.dis.cat/
+    icon:
+      name: game-icons:bookshelf
+      wrap: true
+      color: '#eb215d'
+    status:
+      enabled: true
+  - title: Calibre Web
+    description: Simple E-Book library
+    link: https://calibre.dis.cat/
+    icon:
+      name: mdi:bookshelf
+      wrap: true
+      color: '#eb215d'
+    status:
+      enabled: true

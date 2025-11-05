@@ -217,3 +217,4 @@ Various self hosted services built on podman containers and served remotely thro
 	- sudo ufw allow in from (ipv6 subnet) to any port 8096 # optional to allow direct lan connection to jellyfin from tv
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@media
+	- (setup calibre web server, plugins (kobo utilities), and users from calibre-desktop.(domain))

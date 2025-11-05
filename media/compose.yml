@@ -16,7 +16,7 @@ services:
     ports:
       - 8000:8080
     volumes:
-      - /media/bulk:/data
+      - /media/bulk:/data:rw
     environment:
       - DATA_DIR=/data
       - USERNAME=${MIKOCHI_USERNAME:?Please provide the mikochi username!}
@@ -51,8 +51,26 @@ services:
       - /media/bulk/shows:/shows:ro
       - /media/bulk/music/library:/music:ro
 
+  calibre:
+    image: docker.io/linuxserver/calibre:latest
+    container_name: calibre
+    restart: unless-stopped
+    ports:
+      - 8028:8081
+    volumes:
+      - calibre_config:/config
+      - /media/bulk/books/import:/import:rw
+      - /media/bulk/books/library:/books:rw
+    environment:
+      - PUID=0
+      - GUID=0
+      - TZ=${TZ:?Please provide the timezone!}
+      - CUSTOM_USER=${CALIBRE_USERNAME:?Please provide the calibre username!}
+      - PASSWORD=${CALIBRE_PASSWORD:?Please provide the calibre password!}
+
 volumes:
   navidrome_data:
   ytptube_config:
   jellyfin_config:
   jellyfin_cache:
+  calibre_config:

@@ -102,3 +102,21 @@ jf.{$LOCAl_DOMAIN}, jellyfin.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:8096
 	tls internal
 }
+
+# Calibre
+calibre-desktop.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:8018
+	import trusted_tls
+}
+calibre-desktop.{$LOCAL_DOMAIN} {
+	reverse_proxy host.containers.internal:8018
+	tls internal
+}
+cl.{$TS_DOMAIN}, calibre.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:8028
+	import trusted_tls
+}
+cl.{$LOCAL_DOMAIN}, calibre.{$LOCAL_DOMAIN} {
+	reverse_proxy host.containers.internal:8028
+	tls internal
+}
