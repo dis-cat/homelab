@@ -218,3 +218,4 @@ Various self hosted services built on podman containers and served remotely thro
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@media
 	- (setup calibre web server, plugins (kobo utilities), and users from calibre-desktop.(domain))
+	- (sign in to commafeed with user and password admin/admin and change credentials)

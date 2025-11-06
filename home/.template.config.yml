@@ -20,6 +20,15 @@ services:
         color: '#eb215d'
       status:
         enabled: true
+    - title: CommaFeed
+      description: Simple RSS Reader
+      link: https://commafeed.(tailscale domain)/
+      icon:
+        name: bi:rss-fill
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
     - title: Jellyfin
       description: Media streaming
       link: https://jellyfin.(tailscale domain)/

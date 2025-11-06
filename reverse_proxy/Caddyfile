@@ -104,11 +104,11 @@ jf.{$LOCAl_DOMAIN}, jellyfin.{$LOCAL_DOMAIN} {
 }
 
 # Calibre
-calibre-desktop.{$TS_DOMAIN} {
+cd.{$TS_DOMAIN}, calibre-desktop.{$TS_DOMAIN} {
 	reverse_proxy host.containers.internal:8018
 	import trusted_tls
 }
-calibre-desktop.{$LOCAL_DOMAIN} {
+cd.{$LOCAL_DOMAIN}, calibre-desktop.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:8018
 	tls internal
 }
@@ -128,5 +128,15 @@ ab.{$TS_DOMAIN}, audiobookshelf.{$TS_DOMAIN} {
 }
 ab.{$LOCAL_DOMAIN}, audiobookshelf.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:13378
+	tls internal
+}
+
+# Commafeed
+cf.{$TS_DOMAIN}, commafeed.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:8077
+	import trusted_tls
+}
+cf.{$LOCAL_DOMAIN}, commafeed.{$LOCAL_DOMAIN} {
+	reverse_proxy host.containers.internal:8077
 	tls internal
 }
