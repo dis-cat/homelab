@@ -15,6 +15,9 @@ Various self hosted services built on podman containers and served remotely thro
 - qbittorrent: torrenting
 - jackett: torrent search
 - jellyfin: media streaming
+- calibre: ebook library
+- audiobookshelf: audiobook and podcast streaming
+- commafeed: simple rss reader
 
 ## Dependencies
 - ubuntu 25.10
