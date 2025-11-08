@@ -1,6 +1,7 @@
 services:
   navidrome:
     image: docker.io/deluan/navidrome:latest
+    container_name: navidrome
     restart: unless-stopped
     ports:
       - 4533:4533
@@ -12,6 +13,7 @@ services:
 
   mikochi:
     image: docker.io/zer0tonin/mikochi:latest
+    container_name: mikochi
     restart: unless-stopped
     ports:
       - 8000:8080

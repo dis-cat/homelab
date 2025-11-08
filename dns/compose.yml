@@ -11,11 +11,11 @@ services:
       # DNS
       - 53:53/tcp
       - 53:53/udp
-    environment:
-      - TZ=${TZ:?Please provide the timezone!}
     volumes:
       - adguard_data_work:/opt/adguardhome/work
       - adguard_data_conf:/opt/adguardhome/conf
+    environment:
+      - TZ=${TZ:?Please provide the timezone!}
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:80/']
       interval: 60s

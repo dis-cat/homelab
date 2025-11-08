@@ -30,6 +30,7 @@ services:
       
   slskd:
     image: docker.io/slskd/slskd:latest
+    container_name: slskd
     restart: unless-stopped
     network_mode: "service:gluetun_p2p"
     volumes:
@@ -55,15 +56,15 @@ services:
     container_name: qbittorrent
     restart: unless-stopped
     network_mode: "service:gluetun_p2p"
+    volumes:
+      - qbittorrent_data:/config
+      - /media/bulk:/data
     environment:
       - PUID=0
       - PGID=0
       - TZ=${TZ}
       - WEBUI_PORT=8080
       - TORRENTING_PORT=${QBITTORRENT_FWD_PORT}
-    volumes:
-      - qbittorrent_data:/config
-      - /media/bulk:/data
     depends_on:
       gluetun_p2p:
         condition: service_healthy

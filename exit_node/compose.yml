@@ -20,9 +20,9 @@ services:
       - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY:?Please provide the wireguard preshared key!}
       - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:?Please provide the wireguard addresses!}
       
-  gluetun_tailscale:
+  tailscale_exit:
     image: docker.io/tailscale/tailscale:latest
-    container_name: gluetun_tailscale
+    container_name: tailscale_exit
     restart: unless-stopped
     network_mode: "service:gluetun_exit"
     cap_add:

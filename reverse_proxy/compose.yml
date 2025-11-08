@@ -4,15 +4,15 @@ services:
     container_name: caddy
     restart: unless-stopped
     network_mode: "host"
-    environment:
-      - LOCAL_DOMAIN=${LOCAL_DOMAIN:?Please provide the local domain name!!!}
-      - TS_DOMAIN=${TS_DOMAIN:?Please provide the tailscale domain name!!!}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - ${CERTS_DIR:?Please provide the acme.sh certs directory!!!}:/certs
       - caddy_data_site:/srv
       - caddy_data_data:/data
       - caddy_data_config:/config
+    environment:
+      - LOCAL_DOMAIN=${LOCAL_DOMAIN:?Please provide the local domain name!!!}
+      - TS_DOMAIN=${TS_DOMAIN:?Please provide the tailscale domain name!!!}
 
 volumes:
   caddy_data_site:
