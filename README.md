@@ -212,8 +212,8 @@ Various self hosted services built on podman containers and served remotely thro
 	- (may need to restart the qbittorrent container after gluetun is healthy if qbit cannot connect)
 		- TODO: fix this ^^^
 	- (install jackett plugin)
-	- (setup .jackett.json)
-	- podman cp .jackett.json qbittorrent:/config/qBittorrent/nova3/engines/jackett.json
+	- (setup jackett.json)
+	- podman cp jackett.json qbittorrent:/config/qBittorrent/nova3/engines/jackett.json
 
 - MEDIA (start in homelab/media):
 	- sudo ufw allow in from (ipv4 subnet) to any port 8096 # optional to allow direct lan connection to jellyfin from tv

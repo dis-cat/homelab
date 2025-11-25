@@ -114,6 +114,15 @@ services:
         color: '#eb215d'
       status:
         enabled: true
+    - title: RSS Bridge
+      description: RSS feed magician
+      link: https://rssbridge.(tailscale domain)/
+      icon:
+        name: bi:rss
+        wrap: true
+        color: '#eb215d'
+      status:
+        enabled: true
     - title: Syncthing
       description: File sync
       link: https://syncthing.(tailscale domain)/

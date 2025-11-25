@@ -96,6 +96,16 @@ services:
         limits:
           memory: 256M
 
+  rssbridge:
+    image: docker.io/rssbridge/rss-bridge:latest
+    container_name: rssbridge
+    restart: unless-stopped
+    ports:
+      - 3030:80
+    volumes:
+      - rssbridge_config:/config
+    
+
 volumes:
   navidrome_data:
   ytptube_config:
@@ -104,3 +114,4 @@ volumes:
   calibre_config:
   audiobookshelf_config:
   commafeed_data:
+  rssbridge_config:

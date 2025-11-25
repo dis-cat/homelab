@@ -131,12 +131,22 @@ ab.{$LOCAL_DOMAIN}, audiobookshelf.{$LOCAL_DOMAIN} {
 	tls internal
 }
 
-# Commafeed
+# Commafeed (RSS reader)
 cf.{$TS_DOMAIN}, commafeed.{$TS_DOMAIN} {
 	reverse_proxy host.containers.internal:8077
 	import trusted_tls
 }
 cf.{$LOCAL_DOMAIN}, commafeed.{$LOCAL_DOMAIN} {
 	reverse_proxy host.containers.internal:8077
+	tls internal
+}
+
+# RSS Bridge
+rb.{$TS_DOMAIN}, rssbridge.{$TS_DOMAIN} {
+	reverse_proxy host.containers.internal:3030
+	import trusted_tls
+}
+rb.{$LOCAL_DOMAIN}, rssbridge.{$LOCAL_DOMAIN} {
+	reverse_proxy host.containers.internal:3030
 	tls internal
 }
