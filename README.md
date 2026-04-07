@@ -214,6 +214,7 @@ Various self hosted services built on podman containers and served remotely thro
 	- (install jackett plugin)
 	- (setup jackett.json)
 	- podman cp jackett.json qbittorrent:/config/qBittorrent/nova3/engines/jackett.json
+	- (add line to crontab `crontab -e`, for reset cycle to fix qbittorrent+gluetun firewall glitch:) `9 5 * * * podman restart qbittorrent`
 
 - MEDIA (start in homelab/media):
 	- sudo ufw allow in from (ipv4 subnet) to any port 8096 # optional to allow direct lan connection to jellyfin from tv
@@ -221,4 +222,8 @@ Various self hosted services built on podman containers and served remotely thro
 	- podman-compose systemd -a register
 	- systemctl --user enable --now podman-compose@media
 	- (setup calibre web server, plugins (kobo utilities), and users from calibre-desktop.(domain))
-	- (sign in to commafeed with user and password admin/admin and change credentials)
+
+### Update
+- (In each container group folder):
+	- `podman-compose pull && podman-compose down && systemctl --user restart podman-compose@(container group)`
+	

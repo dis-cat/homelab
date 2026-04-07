@@ -20,15 +20,6 @@ services:
         color: '#eb215d'
       status:
         enabled: true
-    - title: CommaFeed
-      description: Simple RSS reader
-      link: https://commafeed.dis.cat/
-      icon:
-        name: bi:rss-fill
-        wrap: true
-        color: '#eb215d'
-      status:
-        enabled: true
     - title: Jellyfin
       description: Media streaming
       link: https://jellyfin.dis.cat/
@@ -110,15 +101,6 @@ services:
       link: https://mikochi.dis.cat/
       icon:
         name: lsicon:leaf-filled
-        wrap: true
-        color: '#eb215d'
-      status:
-        enabled: true
-    - title: RSS Bridge
-      description: RSS feed magician
-      link: https://rssbridge.dis.cat/
-      icon:
-        name: bi:rss
         wrap: true
         color: '#eb215d'
       status:

@@ -83,29 +83,6 @@ services:
       - /media/bulk/audiobooks/podcasts:/podcasts:rw
       - /media/bulk/audiobooks/metadata:/metadata:rw
 
-  commafeed:
-    image: docker.io/athou/commafeed:latest-h2
-    container_name: commafeed
-    restart: unless-stopped
-    ports:
-      - 8077:8082
-    volumes:
-      - commafeed_data:/commafeed/data
-    deploy:
-      resources:
-        limits:
-          memory: 256M
-
-  rssbridge:
-    image: docker.io/rssbridge/rss-bridge:latest
-    container_name: rssbridge
-    restart: unless-stopped
-    ports:
-      - 3030:80
-    volumes:
-      - rssbridge_config:/config
-    
-
 volumes:
   navidrome_data:
   ytptube_config:
@@ -113,5 +90,3 @@ volumes:
   jellyfin_cache:
   calibre_config:
   audiobookshelf_config:
-  commafeed_data:
-  rssbridge_config:
